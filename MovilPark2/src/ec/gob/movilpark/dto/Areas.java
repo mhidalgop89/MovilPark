@@ -1,7 +1,7 @@
 package ec.gob.movilpark.dto;
 
 public class Areas {
-	
+	 
 	//private String codigoAreas;
 	private int idAreas;
 	private String codigoProvincia;
