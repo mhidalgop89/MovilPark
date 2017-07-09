@@ -1,0 +1,110 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+	
+	
+	
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.EstadoCuentasGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" style="valign: center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="background: darkblue" align="center" width="100%" height="16.6%" >
+				<label value="Pago Realizado" style="font-family: inherit; font-size: 35px; color: white" height="100%"/>
+			</div>
+			<div align="center" width="100%"  height="16.6%"  style="border-collapse: separate;
+  										border-spacing: 2px; border-color: grey; background-color: #EBF1F9 !important;border-radius: 8px; "   >
+
+					<vbox align="center" >
+						<!-- <image src="/images/dark/appbar.currency.dollar.png" style="background: orange;" /> -->
+						<button image="/images/dark/appbar.clock.png" style="background: green; border-radius: 60px 60px 60px 60px" onClick="@command('onCheck')" />
+						<label style="font-family: inherit; font-size: 25px;" value="@load(vm.horas)" onClick="@command('onCheck')" />
+						<label style="font-family: inherit; font-size: 25px;" value="minutos" onClick="@command('onCheck')" />
+					
+						<!-- model="@load(vm.listaTramitePlaca)" -->
+						<listbox  id="lsbListaTramite" emptyMessage="Datos no disponibles." width="100%" mold="paging" pageSize="5" 
+									model="@load(vm.lsEspacioPorParquimetro)" ><!-- selectedItem="@bind(vm.objTramite)" -->
+							<listhead>
+								<listheader label="Ciudad" style="text-align: center" hflex="min" align="center"/>
+								<listheader label="Area" style="text-align: center" hflex="min" align="center"/>
+								<listheader label="Placa" style="text-align: center" hflex="min" align="center"/>
+								<listheader label="Minutos" style="text-align: center" hflex="min" align="center"/>
+							</listhead>
+							<template name="model" status="s">
+								<listitem>
+									<listcell label="@load(each.ciudad)"/><!-- onClick="@command('muestraTiempo')" -->
+									<listcell label="@load(each.areas)"/><!-- onClick="@command('muestraTiempo')" -->
+									<listcell label="@load(each.placa)"/><!-- onClick="@command('muestraTiempo')" -->
+									<listcell label="@load(each.minutos)"/><!-- onClick="@command('muestraTiempo')" -->
+								</listitem>
+								
+								
+							</template>
+						</listbox>
+					</vbox>
+			</div>
+						
+			<div  align="center" width="100%" height="17%" onClick="@command('onServicio')" style="border-collapse: separate;
+  										border-spacing: 2px; border-color: grey; background-color: #EBF1F9 !important;border-radius: 8px; "   >
+				<div  class="btn-group" width="100%" height="100%" style="background: orange"  onClick="@command('onServicio')">
+					<button style="font-family: inherit; font-size: 22px; color: white;background: orange; border-color: orange;" 
+							label="Regresar a Servicios"  onClick="@command('onServicio')" width="100%" height="100%"/>	
+				</div>
+			</div>
+			
+			<div style="border: double;" align="center" width="100%" height="58.6%" >
+				<image  height="50%" src="../images/main-logo-dark1.png" ></image>
+			</div>
+			<div height="5%" />
+			<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-center" style="font-family: inherit; font-size: 15px; font-weight: normal;color: white " >
+								En esta pantalla usted puede observar el tiempo que le resta de parqueo.
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  			</div>
+			
+			
+		</vbox>
+	</div>
+</div>
+
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+		
+		
+	</div>
+
+</window>
+</zk>

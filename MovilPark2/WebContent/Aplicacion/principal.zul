@@ -1,0 +1,175 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" href="../images/parqueoPositivo3.ico" type="image/x-icon"?>
+<zk>
+
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.PrincipalGestor')" 
+closable="true" width="100%" height="100%">
+
+
+
+
+<borderlayout>
+<north></north>
+<center>
+	<include id="incPage" src="@load(vm.rutaInclude)" ></include>
+</center>
+<west size="25%" title="Menú Principal" collapsible="true" id="westPrincipal" visible="true">
+
+
+
+
+<tree width="100%" height="100%" sizedByContent="true" autopaging="true" sclass="sidebar (light)">
+	<treecols >
+		<treecol label="Menú" sclass="title" />		
+	</treecols>
+	<treechildren>
+		<treeitem sclass="dropdown-menu">
+			<treerow>
+				<treecell label="Administración" sclass="title"  />
+			</treerow>
+	<treechildren>
+		<treeitem open="false">
+			<treerow >
+				<treecell  label="Usuarios"  />
+			</treerow>
+			
+			
+				<treechildren >
+ 						<treeitem>
+							<treerow>
+								<treecell label="Perfil " onClick="@command('cargaFrameDinamico', param1='/Aplicacion/perfil.zul', param2='11')" visible="false" />
+							</treerow>
+						</treeitem>	
+						<treeitem>
+							<treerow>
+								<treecell label="Permiso" onClick='winPrincipal$composer.cargaFrameDinamico("MantenimientoVehicuo.zul","3")' visible="false"/>
+							</treerow>
+						</treeitem>
+						
+						<treeitem>
+							<treerow>
+								<treecell label="Perfil-Permiso"  onClick='winPrincipal$composer.cargaFrameDinamico("MantenimientoCercas.zul","4")' visible="false"/>
+							</treerow>
+						</treeitem>
+						
+						<treeitem>
+							<treerow>
+								<treecell label="Usuarios" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/usuario.zul', param2='12')"/>
+							</treerow>
+						</treeitem>
+						
+						<treeitem>
+							<treerow>
+								<treecell label="Tipos de Usuario" onClick='winPrincipal$composer.cargaFrameDinamico("MantenimientoGrupo.zul","9")' visible="false"/>
+							</treerow>
+						</treeitem>
+						<treeitem>
+							<treerow>
+								<treecell label="Password" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/cambiarPassword.zul', param2='12')"/>
+							</treerow>
+						</treeitem>
+						
+				</treechildren>
+			
+						
+		</treeitem>
+		
+		
+		
+		
+		<treeitem open="false">
+				<treerow>
+					<treecell label="Administrar" />
+				</treerow>	
+		
+				<treechildren>
+ 						<treeitem visible="false">
+							<treerow>
+								<treecell label="Parametros " onClick="@command('cargaFrameDinamico', param1='/Aplicacion/parametros.zul', param2='201')"/>
+							</treerow>
+						</treeitem>	
+						<treeitem>
+							<treerow>
+								<treecell label="Area" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/mantenimientoAreas.zul', param2='205')"/>
+							</treerow>
+						</treeitem>
+						<treeitem>
+							<treerow>
+								<treecell label="Parquimetro" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/mantenimientoParquimetro.zul', param2='202')"/>
+							</treerow>
+						</treeitem>
+						
+						<treeitem>
+							<treerow>
+								<treecell label="Notas de crédito" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/notaCredito.zul', param2='203')"/>
+							</treerow>
+							<!-- <treechildren>
+								<treeitem>
+									<treerow>
+										<treecell label="Mantenimiento" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/notaCredito.zul', param2='23')"/>
+									</treerow>		
+									<treerow>
+										<treecell label="Comprada Durante el día" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/notacreditoCompradaDuranteDia.zul', param2='23')"/>
+									</treerow>
+									<treerow>
+										<treecell label="Usada Durante el día" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/notaCredito.zul', param2='23')"/>
+									</treerow>
+								</treeitem>
+							</treechildren> -->
+							
+						</treeitem>
+						
+						<treeitem visible="false">
+							<treerow>
+								<treecell label="Consulta Espacios" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/consultaParquimetro.zul', param2='204')"/>
+							</treerow>
+						</treeitem>
+						<treeitem>
+							<treerow>
+								<treecell label="Consulta Por Placa" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/consultaPorPlaca.zul', param2='206')"/>
+							</treerow>
+						</treeitem>
+						<treeitem>
+							<treerow>
+								<treecell label="Consulta Pagos Por Fechas" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/consultaPagosPorFecha.zul', param2='207')"/>
+							</treerow>
+						</treeitem>
+						<treeitem>
+							<treerow>
+								<treecell label="Parametros Nota de Credito" onClick="@command('cargaFrameDinamico', param1='/Aplicacion/notaCreditoParam.zul', param2='208')"/>
+							</treerow>
+						</treeitem>
+						
+				</treechildren>		
+		</treeitem>
+		<treeitem>
+			<treerow>
+				<treecell label="Reportes" />
+			</treerow>
+			<treechildren>
+				<treeitem>
+							<treerow>
+								<treecell label="Reportes " onClick="@command('cargaFrameDinamico', param1='/Aplicacion/espacioPorParquimetro.zul', param2='31')"/>
+							</treerow>
+						</treeitem>	
+			</treechildren>
+		</treeitem>
+		<treeitem>
+			<treerow>
+				<treecell label="Salir" onClick='@command("salir")'/>
+			</treerow>
+		</treeitem>			
+	</treechildren>
+		</treeitem>		
+	</treechildren>
+</tree>
+
+
+</west>
+<south></south>
+</borderlayout>
+
+</window>
+</zk>

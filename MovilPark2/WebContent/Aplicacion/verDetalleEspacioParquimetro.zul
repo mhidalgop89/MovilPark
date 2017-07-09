@@ -1,0 +1,57 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<!-- onCancel="@command('salir')" apply="org.zkoss.bind.BindComposer"  viewModel="@id('vm') @init('ec.gob.movilpark.gestor.VerDetalleEspacioParquimetroGestor')" -->
+<window id="win" title="" border="none"  apply="ec.gob.movilpark.gestor.VerDetalleEspacioParquimetroGestor"
+closable="true" width="80%" height="auto"  onCancel="win$composer.salir()" >
+<vbox>
+	<div>
+		<charts id="chart" type="gauge" plotBackgroundColor="" plotBackgroundImage=""
+		        plotBorderWidth="0" plotShadow="false" title="Consulta de Tiempo Remanente" />
+		<timer id="timer" delay="60000" running="true" repeats="true"  />
+	</div>
+	<div>
+		<grid>
+			<rows>
+				<row>
+					<label value="Fecha Inicial: " />
+					<label id="lblFecInicial" />
+					
+					<label value="Fecha Final: " />
+					<label id="lblFecFinal" />
+				</row>
+
+				<row>
+					<label value="Nombre:  " />
+					<label id="lblNombre" />
+
+					<label value="Apellido:  " />
+					<label id="lblApellido" />
+				</row>
+				<row>
+					<label value="Teléfono:  " />
+					<label id="lblTelefono" />
+					<label value="Usuario:  " />
+					<label id="lblUsuario" />
+				</row>
+				<row>
+					<label id="lblProvinciaNombre" value="Provincia:  " />
+					<label id="lblProvincia" />
+					<label id="lblCiudadNombre" value="Ciudad:  " />
+					<label id="lblCiudad" />
+				</row>
+				<row>
+					<label id="lblAreaNombre" value="Area:  " />
+					<label id="lblArea" />
+					<label id="lblParquimetroNombre" value="Parquimetro:  " />
+					<label id="lblParquimetro" />
+				</row>
+				<row spans="4" align="center" >
+					<button label="Salir" onClick="win$composer.salir()"></button>
+				</row>
+				
+			</rows>
+		</grid>		
+	</div>
+</vbox>
+</window>
+</zk>

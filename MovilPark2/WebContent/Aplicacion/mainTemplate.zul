@@ -1,0 +1,15 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style  src="../css/style.css" />
+<window border="none"   >
+	<div>
+		<div sclass="ui-div-top-banner" >
+		<separator orient="horizontal" spacing="20px" ></separator>
+			<div  sclass="ui-img-top-banner" />
+		</div>
+		
+	
+	</div>  
+	
+</window>
+</zk>

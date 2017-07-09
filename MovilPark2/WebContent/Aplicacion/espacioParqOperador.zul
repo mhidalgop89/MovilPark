@@ -1,0 +1,137 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style>
+ -->
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.EspacioParqOperadorGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+<timer onTimer="@command('consultaParquimetroPorUso')" repeats="@load(vm.repiteTimer)" delay="3000" />
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+				<div width="100%" height="100%" align="center"  >
+	
+						<div align="center" width="100%" >
+												<div height="20px"/>
+									
+												
+									<div align="left">	
+										<groupbox > 
+											<caption style="font-weight:bold;color:black;font-size:16px;">Filtros</caption>
+											<listbox>
+												<listitem>
+													<listcell>
+															<div align="center" width="100%" height="16.6%" visible="true" >
+																			<combobox model="@load(vm.listaAreas)"  placeholder="-Areas-" width="100%" disabled="false" value="@load(vm.objAreasParam.nombre)" 
+																			selectedItem="@bind(vm.objAreasParam)"  
+																			readonly="false" id="comArea"><!-- onSelect="@command('fillParquimetro')"  -->
+																				<template name="model" var="compo">
+																					<comboitem label="@load(compo.nombre)"> </comboitem>
+																				</template>
+																			</combobox>
+															</div>
+													</listcell>
+												</listitem>
+												
+												<listitem>
+													<listcell>
+														<div align="center">
+															<button label="Consultar" onClick="@command('consultaParquimetroPorUso')"/>
+														</div>
+													</listcell>
+												</listitem>
+											</listbox>
+										</groupbox>
+									</div>
+									<div height="10px"/>
+									<groupbox id="grbUsuarios" open="true" closable="false">
+										<caption style="font-weight:bold;color:black;font-size:16px;" label="Parquimetros"> </caption>
+													<listbox  id="lsbEspacioPorParquimetro" emptyMessage="Datos no disponibles." width="100%" mold="paging" pageSize="5" 
+														model="@load(vm.lsEspacioPorParquimetro)" selectedItem="@bind(vm.objEspacioPorParquimetro)" >
+														<listhead>
+															<!-- <listheader label="Nombre Parquimetro" style="text-align: center" hflex="min" align="center"/>
+															<listheader label="Num Espacio" style="text-align: center" hflex="min" align="center"/> -->
+															<!-- <listheader label="Provincia" style="text-align: center" hflex="min" align="center" /> --><!-- width="21%" -->
+															<!-- <listheader label="Ciudad" style="text-align: center" hflex="min" align="center"/> -->
+															<listheader label="Area" style="text-align: center" hflex="min" align="center"/>
+															<listheader label="Placa" style="text-align: center" hflex="min" align="center"/>
+															<listheader label="M" style="text-align: center" hflex="min" align="center"/>
+															<listheader label="MM" style="text-align: center" hflex="min" align="center"/>
+															<listheader label="SS" style="text-align: center" hflex="min" align="center"/>
+															<!-- <listheader label="Ver" style="text-align: center" hflex="min" align="center"/> -->
+															<!-- <listheader label="Mapa" style="text-align: center" hflex="min" align="center"/> -->
+														</listhead>
+														<template name="model" status="s">
+															<listitem>
+																<!-- <listcell label="@load(each.nombreParquimetro)" />
+																<listcell label="@load(each.numeroEspacio)" /> -->
+																<!-- <listcell label="@load(each.provincia)" /> -->
+																<!-- <listcell label="@load(each.ciudad)" /> -->
+																<listcell label="@load(each.areas)" style="font-size: 13px" />
+																<listcell label="@load(each.placa)" style="font-size: 13px"/>
+																<listcell>
+																	<checkbox checked="@load(each.existeMulta)" disabled="false" onCheck="@command('gestionaMulta',param = each)"/>
+																</listcell>
+																<listcell label="@load(each.minutos)" style="@load(each.estilo)" />
+																<listcell label="@load(each.segundos)" style="@load(each.estilo)" />
+																
+																<!-- <listcell style="background-color:blue;">
+																	<image src="/images/dark/appbar.eye.png" width="25px" height="25px" style="color:blue;" onClick="@command('muestraDetalle')" /> 
+																</listcell> -->
+																<!--<listcell style="background-color:blue;">
+																	<image src="/images/dark/appbar.edit.box.png" width="25px" height="25px" style="color:blue;" onClick="@command('editaParquimetro')" /> 
+																</listcell>
+																 <listcell style="background-color:red;" visible="false" >
+																	<image src="/images/appbar.delete.png" width="25px" height="25px" style="color:red;" onClick="@command('eliminaContacto')"
+																		visible="@load(vm.solicitudConst.notario eq 'S'?false:true)" />
+																</listcell> -->
+															</listitem>
+														</template>
+													</listbox>
+													<div height="10px" />
+													
+													<div  align="center" width="100%" height="17%"  >
+														<div  class="btn-group" width="100%" height="100%" >
+															<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atras</button>
+															<button width="49%" style="background: orange; border-radius:0; color: white; border-color: orange;" onClick="@command('salir')" >Salir</button>
+															
+														</div>
+													</div>
+												
+												
+									</groupbox>
+									<div height="10px" />
+												<div align="center" width="100%" visible="false">
+													<button label="Agregar Parquimetro" onClick='@command("nuevoParquimetro")' style="background-color: blue"/>
+												</div>
+								</div>
+						
+					</div>		
+						
+						
+					<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+	</div>
+
+</window>
+</zk>

@@ -1,0 +1,75 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.MultaVehiculoGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+
+
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+					<div width="100%" height="100%">
+						<div align="center"  width="100%" height="100%">
+							<div style="background: darkblue; border-radius: 8px;" align="center" width="100%" height="12.6%" >
+								<label value="Multa de Vehiculo" style="font-family: inherit ; font-size: 25px; color: white; " height="100%"/>
+							</div>
+							<div height="5%" />
+							<vbox>
+								
+								<label value="Placa: " style="color: white; font-weight: bold" /> 
+								<combobox model="@load(vm.listaVehiculos)" width="100%" placeholder="-vehiculo-" disabled="false" selectedItem="@bind(vm.objVehiculo)" 
+												readonly="false" id="comVehiculo"><!-- onBlur="@command('filtraProvincia')" -->
+												<template name="model" var="compo">
+													<comboitem label="@load(compo.placa)"> </comboitem>
+												</template>
+											</combobox>
+								<div width="100%" align="center">
+									<button label="Multar" onClick="@command('multaVehiculo')"/> 
+								</div>
+							</vbox>
+							<div height="5%" />
+							<!-- <div width="100%" align="center" style="background: orange; border-radius: 8px;" onClick="@command('salir')" visible="true" >
+								<hbox width="50%" align="center" >
+									<label value="Salir" style="color: white; font-family: inherit; font-size: 25px"  onClick="@command('salir')"/>
+									<image src="/images/dark/appbar.network.disconnect.png" onClick="@command('salir')" style="background: orange"></image>
+								</hbox>
+							</div> -->
+							
+							<div  align="center" width="100%" height="17%"  >
+								<div  class="btn-group" width="100%" height="100%" >
+									<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atras</button>
+									<button width="49%" style="background: orange; border-radius:0; color: white; border-color: orange;" onClick="@command('salir')" >salir</button>
+									
+								</div>
+							</div>
+						</div>	
+					</div>
+					
+					<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+	</div>
+
+</window>
+</zk>

@@ -1,0 +1,121 @@
+<?page title="Login" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" href="images/parqueoPositivo3.ico" type="image/x-icon"?>
+<zk xmlns:h="xhtml">
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.LoginGestor')"  
+closable="true" width="100%" height="100%">
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >
+		<!-- <div  height="150px" >
+				<include src="mainTemplate.zul" height="auto" ></include>
+		</div> -->
+		
+		
+		<div width="100%" height="95%" align="center" >
+			<!-- <div width="67%" height="auto" align="center" style="background-color: white">
+				<separator orient="horizontal" spacing="30px" ></separator>
+				<div width="70%" height="auto"  align="center" style="border-collapse: separate;
+  					border-spacing: 2px; border-color: grey; background-color: #EBF1F9 !important;border-radius: 8px; " > -->
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+
+
+
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center"  >
+<div width="100%" height="100%" style="max-width: 400px" align="center" >
+	<vbox width="100%" height="100%" >
+		<div style="" align="center" width="100%" height="58.6%" >
+			<div  style="background-image: url('images/parqueotop2.jpg');" width="100%" height="100%">
+				<image  height="50%" src="images/parqueoPositivo2.png" ></image>
+			</div>
+		</div>
+		<div style="background-color: navy; border-radius: 8 8 8 8" align="center" width="100%" height="12.6%" >
+			<label value="Móvil P@rk" style="font-family: 'Times New Roman'; font-size: 25px; color:white;" height="80%"/>
+		</div>
+		<div><!--  style="background-image: url('../images/collage.JPG');" -->
+		<div align="center" width="100%"  height="16.6%">
+		<vbox width="100%" >
+			<label value="Usuario" style="color:white; font-family: inherit; font-size: 20px;" width="100%" ></label>
+			<textbox placeholder="Usuario/Email" value="@bind(vm.usuario)" height="100%" width="100%" focus="true" class="form-control" />
+		</vbox>
+		</div>
+		<div align="center" width="100%" height="16.6%" >
+			<vbox width="100%">
+				<label value="Password" style="color:white; font-family: inherit; font-size: 20px;" width="100%" ></label>
+				<textbox placeholder="Contraseña" type="password" value="@bind(vm.pass)" onOK="@command('onIniciarSesion')" class="form-control" />
+			</vbox>
+		</div>
+		<div align="center" width="100%" height="16.6%" visible="false"  >
+			<hbox>
+				<div>
+					<radio/>
+				</div>
+				<div >
+					<label value="Recordar Contraseña" />
+				</div>
+			</hbox>
+		</div>
+		<div  align="center" width="100%" height="16.6%">
+			<a href="/Aplicacion/recuperarContrasena.zul" style="color:white">¿Ha olvidado su contraseña?</a>
+		</div>
+		<div  align="center" width="100%" height="17%"  >
+			<div  class="btn-group" width="100%" height="100%" >
+				<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onRegistro')" >Registrar</button>
+				<button width="49%" style="background: green; border-radius:0; color: white; border-color: green" onClick="@command('onIniciarSesion')">Log in</button>					
+			</div>
+		</div>
+		</div>
+		<div height="5%" />
+		<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-justify" style="font-family: inherit; font-size: 15px; font-weight: normal;color: white " >
+								Recuerda: Para poder ingresar a MovilPark, debes de haber realizado previamente 
+								tu proceso de registro en el sistema, presionando el boton Registrar
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  		</div>
+		
+		<div  width="100%" height="100%" align="center">
+			<image   src="/images/main-logo-dark1.png" style="max-width: 80%" ></image>
+		</div>
+	</vbox>
+</div>
+</div>
+
+
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+<!-- 				</div>
+				<separator orient="horizontal" spacing="30px" ></separator>				
+				
+			</div> -->
+		</div>
+		
+		
+	</div>
+	
+	
+</window>
+</zk>

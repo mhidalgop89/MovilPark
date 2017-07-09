@@ -1,0 +1,85 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.ConsultaParquimetroGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="border: double; background: grey;" align="center" width="100%" height="16.6%" >
+				<label value="Consulta Parquimetro" style="font-family: 'Times New Roman'; font-size: 35px; color: white" height="100%"/>
+			</div>
+			<div align="center" width="100%"  height="16.6%" visible="false" >
+				
+				<combobox model="@load(vm.listaVehiculos)" width="100%" placeholder="-Placa-" disabled="false"  selectedItem="@bind(vm.objVehiculo)" 
+					readonly="false" id="comPlaca"   >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+					<template name="model" var="compo">
+						<comboitem label="@load(compo.placa)"> </comboitem>
+					</template>
+				</combobox>
+			</div>
+			
+			<div align="center" width="100%" height="16.6%"  visible="true" >
+					<combobox model="@load(vm.listaProvincia)" width="100%" placeholder="-Provincia-" focus="true" disabled="false" value="@load(vm.objProvincia.nombre)" selectedItem="@bind(vm.objProvincia)" 
+					readonly="false" id="comProvincia" onSelect="@command('fillCiudades')" onBlur="@command('fillCiudades')">
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+			<div align="center" width="100%" height="16.6%" visible="true" >
+					<combobox model="@load(vm.listaCiudades)"  placeholder="-Ciudad-" width="100%" disabled="false" value="@load(vm.objCiudad.nombre)" selectedItem="@bind(vm.objCiudad)" 
+					readonly="false" id="comCiudad"  onSelect="@command('fillAreas')" onBlur="@command('fillAreas')" >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+			
+			<div align="center" width="100%" height="16.6%" visible="true" >
+					<combobox model="@load(vm.listaAreas)"  placeholder="-Areas-" width="100%" disabled="false" value="@load(vm.objArea.nombre)" selectedItem="@bind(vm.objArea)" 
+					readonly="false" id="comArea" onSelect="@command('fillParquimetro')" onBlur="@command('fillParquimetro')" >
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+						
+			<div align="center" width="100%" height="16.6%" >
+				<combobox model="@load(vm.listaParquimetros)" width="100%" placeholder="-Parquimetro-" disabled="false" value="@load(vm.objParquimetro.nombre)" selectedItem="@bind(vm.objParquimetro)" 
+					readonly="false" id="comParquimetro" onSelect="@command('consultaEspacio')"  onBlur="@command('consultaEspacio')">
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+					<template name="model" var="compo">
+						<comboitem label="@load(compo.nombre)"> </comboitem>
+					</template>
+				</combobox>
+			</div>
+			
+			<div align="center" width="100%" height="16.6%" >
+				<combobox model="@load(vm.listaEspacioPorParquimetro)" width="100%" placeholder="-Espacio por Parquimetro-" disabled="false" value="@load(vm.objEspacioPorParquimetro.numeroEspacio)" selectedItem="@bind(vm.objEspacioPorParquimetro)" 
+					readonly="false" id="comEspacioParquimetro"  >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+					<template name="model" var="compo">
+						<comboitem label="@load(compo.numeroEspacio)"> </comboitem>
+					</template>
+				</combobox>
+			</div>
+			<div align="center" width="100%" height="16.6%" visible="false">
+					<textbox placeholder="Teléfono Móvil"   class="form-control"   />
+			</div>
+			
+			<div  align="center" width="100%" height="17%"  >
+				<div  class="btn-group" width="100%" height="100%" >
+					<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" visible="false" >Atrás</button>
+					<button width="98%" style="background: orange; border-radius:0; color: white; border-color: orange" onClick="@command('consultar')">Consultar</button>					
+				</div>
+			</div>
+		</vbox>
+	</div>
+</div>
+</window>
+</zk>

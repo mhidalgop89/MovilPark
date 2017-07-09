@@ -1,0 +1,9 @@
+<?component name="buynow" extends="button" class="ec.gob.movilpark.gestor.PaypalBuyNowButton"
+  label="" image="http://13.82.51.231/MovilPark/images/dark/appbar.paypal.png"
+  style="background-color: green" noShipping="2" noNote="1"  
+	return="http://13.82.51.231/MovilPark/login" cancelReturn="http://13.82.51.231/MovilPark/Aplicacion/servicios.zul"
+  business="mario.hidalgo89@hotmail.com" tooltiptext="Make payments with PayPal - it's fast, free and secure!"?>
+<zk>
+    <zscript src="/Aplicacion/PaypalBuyNowButton.java"/>
+		<buynow amount="0.01" itemName="Parquimetro" itemNumber="A123"  />
+</zk>

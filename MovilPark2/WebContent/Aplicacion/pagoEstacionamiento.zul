@@ -1,0 +1,145 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style>
+ -->
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.PagoEstacionamientoGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+
+
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="background: darkblue; border-radius: 8px;" align="center" width="100%" height="16.6%" >
+				<label value="Pago de Estacionamiento" style="font-family: inherit ; font-size: 25px; color: white; " height="100%"/>
+			</div>
+			<div align="center" width="100%"  height="16.6%">
+				
+				<hbox width="100%">
+					<combobox model="@load(vm.listaVehiculos)" width="100%" placeholder="-Placa-" disabled="false" focus="true" selectedItem="@bind(vm.objVehiculo)" 
+						readonly="false" id="comPlaca"   >
+						<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.placa)"> </comboitem>
+						</template>
+					</combobox>
+					<button onClick="@command('creaNuevaPlaca')">+</button>
+					<button onClick="@command('eliminaPlaca')" style="background-color: red; border-color: red; font-weight: bold; font-size: 25px">-</button>
+				</hbox>
+			</div>
+			
+			<div align="center" width="100%" height="16.6%"  visible="false"  >
+					<combobox model="@load(vm.listaProvincia)" width="100%" placeholder="-Provincia-" disabled="false" value="@load(vm.objProvincia.nombre)" selectedItem="@bind(vm.objProvincia)" 
+					readonly="false" id="comProvincia" onSelect="@command('fillCiudades')" onBlur="@command('fillCiudades')">
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+			<div align="center" width="100%" height="16.6%" visible="true" >
+					<combobox model="@load(vm.listaCiudades)"  placeholder="-Ciudad-" width="100%" disabled="false" value="@load(vm.objCiudad.nombre)" selectedItem="@bind(vm.objCiudad)" 
+					readonly="false" id="comCiudad"  onSelect="@command('fillAreas')" onBlur="@command('fillAreas')" >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)" value="@bind(vm.objCiudad)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+			
+			<div align="center" width="100%" height="16.6%" visible="true" >
+					<combobox model="@load(vm.listaAreas)"  placeholder="-Areas-" width="100%" disabled="false" value="@load(vm.objArea.nombre)" 
+					selectedItem="@bind(vm.objArea)"  
+					readonly="false" id="comArea" onSelect="@command('verDivArea')" onBlur="@command('verDivArea')" ><!-- onSelect="@command('fillParquimetro')"  -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+			<div align="center" width="100%" height="16.6%" visible="@load(vm.verArea)" >
+				<!-- <image src="/images/areas/area1.png"  ></image> -->
+				<button onClick="@command('verArea')">Ver Area</button>
+			</div>
+						
+			<div align="center" width="100%" height="16.6%" visible="false" >
+				<combobox model="@load(vm.listaParquimetros)" width="100%" placeholder="-Parquimetro-" disabled="false" value="@load(vm.objParquimetro.nombre)" selectedItem="@bind(vm.objParquimetro)" 
+					readonly="false" id="comParquimetro" onSelect="@command('consultaEspacio')"  onBlur="@command('consultaEspacio')">
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+					<template name="model" var="compo">
+						<comboitem label="@load(compo.nombre)"> </comboitem>
+					</template>
+				</combobox>
+			</div>
+			
+			<div align="center" width="100%" height="16.6%" visible="false" >
+				<combobox model="@load(vm.listaEspacioPorParquimetro)" width="100%" placeholder="-Espacio por Parquimetro-" disabled="false" value="@load(vm.objEspacioPorParquimetro.espacio)" selectedItem="@bind(vm.objEspacioPorParquimetro)" 
+					readonly="false" id="comEspacioParquimetro"  >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+					<template name="model" var="compo">
+						<comboitem label="@load(compo.espacio)"> </comboitem>
+					</template>
+				</combobox>
+			</div>
+			<div align="center" width="100%" height="16.6%" visible="false">
+					<textbox placeholder="Teléfono Móvil"   class="form-control"   />
+			</div>
+			
+			<div  align="center" width="100%" height="17%"  >
+				<div  class="btn-group" width="100%" height="100%" >
+					<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atrás</button>
+					<button width="49%" style="background: green; border-radius:0; color: white; border-color: green;" onClick="@command('onSiguiente')">Siguiente</button>					
+				</div>
+			</div>
+			
+			<div style="border: double;" align="center" width="100%" height="58.6%" >
+				<image  height="50%" src="../images/main-logo-dark1.png" ></image>				
+			</div>
+			<div height="5%" />
+			<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-center" style="font-family: inherit; font-size: 15px; font-weight: normal;color: white " >
+								Por favor escoge en el siguiente orden la informacion solicitada 
+								Placa, Provincia, Ciudad, Area, Parquimetro, Espacio de Parquimetro, luego presiona Siguiente
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  			</div>
+		</vbox>
+	</div>
+</div>
+
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+		
+		
+	</div>
+</window>
+</zk>

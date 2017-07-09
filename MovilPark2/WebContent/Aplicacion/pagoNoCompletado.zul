@@ -1,0 +1,41 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.PagoNoCompletadoGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" style="valign: center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="border: double; background: grey" align="center" width="100%" height="16.6%" >
+				<label value="Pago Realizado" style="font-family: 'Times New Roman'; font-size: 35px; color: white" height="100%"/>
+			</div>
+			<div align="center" width="100%"  height="16.6%" style="background: white;" >
+
+					<vbox align="center" >
+						<!-- <image src="/images/dark/appbar.currency.dollar.png" style="background: orange;" /> -->
+						<button image="/images/dark/appbar.checkmark.cross.png" style="background: red; border-radius: 60px 60px 60px 60px" onClick="@command('onCross')" />
+						<label style="font-family: 'Times New Roman'; font-size: 25px;" value="Pago Realizado" onClick="@command('onCross')" />
+					</vbox>
+
+			</div>
+						
+			<div  align="center" width="100%" height="17%" onClick="@command('onServicio')" >
+				<div  class="btn-group" width="100%" height="100%" style="background: grey">
+					<label style="font-family: 'Times New Roman'; font-size: 25px; color: white" value="Regresar a Servicios" />	
+				</div>
+			</div>
+		</vbox>
+	</div>
+</div>
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+		
+		
+	</div>
+</window>
+</zk>

@@ -1,0 +1,118 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.ServiciosOperadorGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+							<div width="100%" height="100%" align="center">
+							<div width="100%" height="100%" style="max-width: 400px" align="center" >	
+								<vbox width="100%" height="100%" align="center">
+									<div style="background: darkblue;  border-radius: 8px;" align="center" width="100%" height="20%"  visible="false">
+										<hbox width="70%" align="center">
+										<label value="Pago Tarifa Extraordinaria" style="color: white; font-family: inherit; font-size: 25px;"   height="100%"/>
+											<image src="/images/dark/appbar.iphone.png" ></image>
+										</hbox>
+									</div>
+									
+										<div align="center" height="20%"  width="100%" style="background: darkgreen;  border-radius: 8px;" onClick="@command('onConsultaPorPlaca')" >
+											
+											<button label="Consulta Por Placa" style="color: white; font-family: inherit; font-size: 20px;background: darkgreen; border-color: darkgreen;" 
+													onClick="@command('onConsultaPorPlaca')" width="75%" height="100%"/>
+											<image src="/images/dark/appbar.page.search.png" style="background: darkgreen;"  height="75%" onClick="@command('onConsultaPorPlaca')"></image>
+										</div>
+										
+										<div align="center" height="50%"  width="100%" style="background: darkgreen;  border-radius: 8px;" onClick="@command('onReporte')">
+											
+											<button label="Reporte en linea" style="color: white; font-family: inherit; font-size: 20px;background: darkgreen; border-color: darkgreen;"  
+												   onClick="@command('onReporte')" width="75%" height="100%"/>
+											<image src="/images/dark/appbar.list.check.png" style="background: darkgreen;" height="75%" onClick="@command('onReporte')"></image>
+										</div>
+										
+										
+										<div align="center" height="50%" visible="true"  width="100%" style="background: darkgreen;  border-radius: 8px;" onClick="@command('onAplicaMulta')">
+											
+											<button label="Aplica Multa" style="color: white; font-family: inherit; font-size: 20px;background: darkgreen; border-color: darkgreen;"  
+													onClick="@command('onAplicaMulta')" width="75%" height="100%"/>
+											<image src="/images/dark/appbar.alert.png" style="background: darkgreen;"  height="75%" onClick="@command('onAplicaMulta')"></image>
+										</div>
+										
+										<div align="center" height="50%"  width="100%" style="background: darkgreen;  border-radius: 8px;" onClick="@command('onCambioPass')">
+											
+											<button label="Actualizar Contraseña" style="color: white; font-family: inherit; font-size: 20px;background: darkgreen; border-color: darkgreen;"  
+													onClick="@command('onCambioPass')" width="75%" height="100%"/>
+											<image src="/images/dark/appbar.interface.password.png" style="background: darkgreen;"  height="100%" onClick="@command('onCambioPass')"></image>
+										</div>
+										<div width="100%" height="50%" align="center" style="background: orange; border-radius: 8px;" onClick="@command('salir')" visible="true" >
+												<button label="Salir" style="color: white; font-family: inherit; font-size: 20px;background: orange; border-color: orange;"  
+														onClick="@command('salir')" width="75%" height="100%"/>
+												<image src="/images/dark/appbar.network.disconnect.png" onClick="@command('salir')" height="75%" style="background: orange"></image>
+										</div>
+										<div  width="100%" height="100%" align="center">
+											<image   src="/images/main-logo-dark1.png" style="max-width: 80%" ></image>
+										</div>
+										
+										<div height="5%" />
+										<div align="center" width="100%">
+							 							<div align="center" width="95%" >
+							  							<html><![CDATA[            
+															<p class="text-center" style="font-family: inherit; font-size: 15px; font-weight: normal;color: white " >
+															Para acceder al proceso de pago del parquimetro por favor selecciona la opción Pago de Parquimetro,
+															si deseas salir presiona Salir
+															</p>           
+							  							 ]]></html>
+							 							 </div>
+							  			</div>
+									
+									<!-- <hbox height="100%" width="100%" align="center" >
+										<div align="center" width="100%" style="background: orange;"  >
+											<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"  ></image>
+											<label value="Parking púlico" style="color: white" />
+										</div>
+										<div width="100%" align="center" style="background: orange;"  >
+											<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"></image>
+											<label value="Parking púlico" style="color: white" />
+										</div>
+									</hbox>
+									<hbox height="100%" width="100%" align="center" >
+										<div align="center" width="100%" style="background: orange;" >
+											<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"  ></image>
+											<label value="Parking púlico" style="color: white" />
+										</div>
+										<div width="100%" align="center" style="background: orange;" >
+											<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"></image>
+											<label value="Parking púlico" style="color: white" />
+										</div>
+									</hbox> -->
+								</vbox>
+							</div>	
+							</div>
+					<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>	
+	</div>
+</window>
+</zk>

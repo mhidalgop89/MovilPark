@@ -1,0 +1,163 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.SeleccionaTarifaGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+
+
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="background: darkblue; border-radius: 8px;" align="center" width="100%" height="9.32%" >
+				<label value="Pago Estacionamiento" style="font-family: inherit; font-size: 20px; color: white; font-weight: bold" height="100%"/>
+				<image src="/images/dark/appbar.billing.png" />
+			</div>
+			<!-- <div height="10px" ></div> -->
+			<div align="center" width="100%"  height="14.28%" visible="false">
+				<vbox align="center" >
+					<hbox>
+						<label value="min : $" style="color:white"/><label value="@load(vm.valorMinimoDolares)" style="color:white; font-weight: bold;"/>
+						<slider mold="scale" maxpos="@load(vm.tiempoMaxEnMinutos)" curpos="@bind(vm.posicionActual)"  
+						onScroll="@command('calculaHoras')"  ></slider>
+						<label value="max : $" style="color:white" /><label value="@load(vm.maximoDolares)" style="color:white; font-weight: bold;"/>
+					</hbox>
+				</vbox>
+			</div>
+			
+			<div align="left" width="100%"  height="14.28%" visible="true">
+				<vbox align="start">
+					<hbox visible="@load(vm.noPoseeTramitePrevio)">
+						<label value="Tiempo Minimo: " style="color:white"/><label value="@load(vm.tiempoMinEnMinutos)" style="color:white; font-weight: bold;"/>
+						<label value=" minutos" style="color:white"/>
+					</hbox>
+					<hbox>
+						<label value="Tiempo Maximo: " style="color:white"/><label value="@load(vm.tiempoMaxEnMinutos)" style="color:white; font-weight: bold;"/>
+						<label value=" minutos" style="color:white"/>
+					</hbox>
+					<hbox>
+						<label value="Saldo Disponible: $" style="color:white"/><label value="@load(vm.objSession.saldo)" style="color:white; font-weight: bold;"/>
+					</hbox>
+				</vbox>
+			</div>
+			
+			
+			<div align="center">
+				<hbox align="center" >
+					<div  align="center">
+						<!-- <intbox value="@bind(vm.posicionActual)" width="50px" onOK="@command('calculaHoras')" onChanging="@command('calculaHoras')"  
+						onBlur="@command('calculaHoras')"  />  -->
+						<spinner value="@bind(vm.posicionActual)" onBlur="@command('calculaHoras')" onChanging="@command('calculaHoras')" 
+								width="70px" onOK="@command('calculaHoras')"
+						  mold="rounded" constraint="@bind(vm.constraintSpinPosicion)" readonly="false" /> <!--step="15"  constraint="min 15 max 240: Entre 15 to 240" onChanging="@command('calculaHoras')"  onChange="@command('calculaHoras')"  -->
+						<label value="minutos" style="color: white; font-family: inherit; font-size: 12px" />
+						<button label="Aceptar" onClick="@command('calculaHoras')"/>
+					</div>
+				</hbox>			
+				
+			</div>
+			<div height="15px"/>
+			<div align="center" width="100%" height="14.28%" >
+				<hbox align="center" >
+					<intbox value="@bind(vm.hora)" width="35px" readonly="true" onBlur="@command('calculaMinutos')" onChanging="@command('calculaMinutos')"
+					constraint="no negative: Solo números positivos o cero son permitidos"  />
+					<label value=":" style="color: white;"></label>
+					<intbox value="@bind(vm.minuto)" width="35px" readonly="true" onBlur="@command('calculaMinutos')" onChanging="@command('calculaMinutos')" 
+					constraint="no negative: Solo números positivos y cero" />
+					<label value="HH:MM" style="color: white; font-family: inherit; font-size: 12px"></label>
+				</hbox>
+			</div>
+			
+			<div align="center"  >
+				<hbox align="center" >
+					<intbox value="@bind(vm.unidadDolar)" width="35px" readonly="true" onBlur="@command('calculaTiempo')"  onOK="@command('calculaTiempo')"
+					 constraint="no negative: Solo números positivos o cero son permitidos"  />
+					<label value="," style="color: white" ></label>
+					<intbox value="@bind(vm.centavos)" width="35px"	readonly="true"	onBlur="@command('calculaTiempo')" onOK="@command('calculaTiempo')"
+					constraint="no negative; no zero: Solo números positivos" />
+					<div width="15px" />
+					<label value="$" style="color: white; font-family: 'Times New Roman'; font-size: 35px;" ></label>
+				</hbox>
+			</div>
+			
+			<div align="center" width="100%" height="14.28%" visible="false" >
+					<button label="TARIFAS" onClick="@command('verTarifas')"  />
+			</div>
+			<div  align="center" width="100%" height="14.28%" visible="false">
+				<vbox>
+					<label value="@load(vm.fechaActualLocal)" style="color: white; font-family: inherit; font-size: 15px"></label>
+					<hbox>
+						<label value="Desde: " style="color: white; font-family: inherit; font-size: 15px"/>
+						<label value="@load(vm.horaDesde)" style="color: white; font-family: inherit; font-size: 15px" ></label>
+					</hbox>
+					<hbox>
+						<label value="Hasta: " style="color: white; font-family: inherit; font-size: 15px"/>
+						<label value="@load(vm.horaHasta)" style="color: white; font-family: inherit; font-size: 15px" ></label>
+					</hbox>
+				</vbox>
+			</div>
+			<div  align="center" width="100%" height="14.28%"  >
+				<div  class="btn-group" width="100%" height="100%" >
+					<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atrás</button>
+					<button width="49%" style="background: green; border-radius:0; color: white; border-color: green;" onClick="@command('onSiguiente')">Siguiente</button>					
+				</div>
+			</div>
+			
+			
+			<div style="border: double;" align="center" width="100%" height="58.6%" >
+				<image  height="50%" src="../images/main-logo-dark1.png" ></image>
+			</div>
+			<div height="5%" />
+			<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-center" style="font-family: inherit; font-size: 13px; font-weight: normal;color: white " >
+									Para reservar el parquimetro puedes hacerlo de 3 formas.<br>
+									1.Ingresa en el campo de minutos el tiempo que deseas reservar
+									2.Ingresa en el campo Hora:Minutos el tiempo que desees reservar
+									3.Ingresa en termino monetario la cantidad que deseas reservar ej: 1 . 25 $ <br>
+									Luego presiona Siguiente
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  			</div>
+			
+			
+		</vbox>
+	</div>
+</div>
+
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+	</div>
+
+</window>
+</zk>

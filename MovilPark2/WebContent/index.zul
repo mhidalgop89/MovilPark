@@ -1,0 +1,44 @@
+<?page title="Auto Generated index.zul"?>
+<window title="Hello World!!" border="normal" width="200px"  apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.IndexGestor')" >
+
+<script type="text/javascript">
+	function submitform()
+    {
+      document.getElementById("aa").submit();
+    }
+ </script>
+
+<label value="You are using: ${desktop.webApp.version}"/>
+<html><![CDATA[ 
+<html>
+<body>
+	<form action="login" method="POST" id="myForm" name="myForm">
+	  <p>
+	  <input name="test" value="test" />
+	  </p>
+	  <p>
+	    <input type="submit" name="submit" id="aa" value="Submit" />
+	  </p>
+	</form>
+	
+	<script type="text/javascript">
+    window.onload=function(){
+        var auto = setTimeout(function(){ autoRefresh(); }, 100);
+
+        function submitform(){
+          alert('test');
+          document.getElementById("myForm").submit();
+        }
+
+        function autoRefresh(){
+           clearTimeout(auto);
+           auto = setTimeout(function(){ submitform(); autoRefresh(); }, 10000);
+        }
+    }
+</script>
+</body>
+</html>
+               
+               ]]></html>
+</window>

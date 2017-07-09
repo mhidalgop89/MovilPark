@@ -1,0 +1,71 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window  title="" border="none" apply="org.zkoss.bind.BindComposer"  
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.AgregarNotasCreditoGestor')"  
+closable="true" width="40%" height="auto" onCancel="@command('salir')" >
+
+<style  src="/css/bootstrap.css"/>
+<div height="100%" width="100%">
+	<grid>
+		<rows>
+		
+			<row>
+				<div width="35%" >
+					<label value="*Valor"  ></label>
+				</div>
+				<doublebox class="form-control" value="@bind(vm.objNotaCredito.valor)" onBlur="@command('actualizaSaldo')" ></doublebox>
+			</row>
+						
+			<row>
+				<label value="Descuento" ></label>
+				<doublebox class="form-control" value="@bind(vm.objNotaCredito.descuento)"  readonly="true" ></doublebox>
+			</row>
+			
+			<row>
+				<label value="Saldo" ></label>
+				<doublebox class="form-control" value="@bind(vm.objNotaCredito.saldo)" readonly="true"  ></doublebox>
+			</row>
+			
+			<row>
+				<label value="*Usuario" ></label>
+				<combobox model="@load(vm.lsUsuarios)" width="100%" placeholder="-Usuario-" disabled="false"  selectedItem="@bind(vm.objUsuario)" 
+					readonly="false" id="comUsuarios" >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+					<template name="model" var="compo">
+						<comboitem label="@load(compo.usuario)"> </comboitem>
+					</template>
+				</combobox>
+			</row>
+			
+			<row>
+				<label value="Observacion" ></label>
+				<textbox class="form-control" value="@bind(vm.objNotaCredito.observacion)" ></textbox>
+			</row>
+			<row>
+				<label value="*Numero de Factura" ></label>
+				<textbox class="form-control" value="@bind(vm.objNotaCredito.numeroFactura)" ></textbox>
+			</row>
+			
+			<row>
+				<label value="Estado" ></label>
+				<combobox placeholder="-Estado-" id="cmbEstadoNotaCredito" selectedItem="@bind(vm.estado)" disabled="@load(vm.disabled)" >
+					<comboitem label="Activo" value="A" />
+					<comboitem label="Inactivo" value="I" />
+				</combobox>
+			</row>
+			
+			<row>
+				<cell colspan="2" align="center" >
+					<button label="Guardar" onClick="@command('guardarNotaCredito')" ></button> 
+					
+					<button label="Salir" onClick="@command('salir')" ></button>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</div>
+
+
+
+</window>
+</zk>

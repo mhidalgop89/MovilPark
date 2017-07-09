@@ -1,0 +1,58 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.ParametroGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+	
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="border: double; background: grey;" align="center" width="100%" height="16.6%" >
+				<label value="Parametros" style="font-family: 'Times New Roman'; font-size: 35px; color: white" height="100%"/>
+			</div>
+			<grid>
+				<rows>
+					<row>
+						<label value="Valor por minuto: " style="font-size: 20px;" />
+						<doublebox tooltiptext="Valor por minuto expresado en unidad de dolar" placeholder="Valor por minuto expresado en unidad de dolar"  height="100%" value="@bind(vm.objParam.valorPorMinuto)" class="form-control" />
+						<label value="Dolares" style="font-size: 20px;" />	
+					</row>
+					<row>
+						<label value="Tiempo Máximo:" style="font-size: 20px;" />
+						<doublebox placeholder="Tiempo Máximo"  height="100%" class="form-control" value="@bind(vm.objParam.tiempoMaxEnMinutos)" />	
+						<label value="Minutos" style="font-size: 20px;" />	
+					</row>
+					<row>
+						<label value="Valor Máximo:" style="font-size: 20px;" />
+						<doublebox placeholder="Valor Máximo"  height="100%" class="form-control" value="@bind(vm.objParam.maximoDolares)" />
+						<label value="Dolares" style="font-size: 20px;" />		
+					</row>
+					<row>
+						<label value="Valor Minimo" style="font-size: 20px;" />
+						<textbox placeholder="Valor Minimo" class="form-control" value="@bind(vm.objParam.valorMinimoDolares)" />
+						<label value="Dolares" style="font-size: 20px;" />		
+					</row>
+				</rows>
+			</grid>
+			
+			
+
+			
+			
+			
+			<div  align="center" width="100%" visible="false" height="17%"  >
+				<button label="Guardar/Actualizar" disabled="true" />
+			</div>
+			<div  align="center" width="100%" height="17%"  >
+				<div  class="btn-group" width="100%" height="100%" >
+					<button width="49%" visible="false" style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atrás</button>
+					<button width="100%" disabled="false" style="background: orange; border-radius:0; color: white; border-color: orange" 
+					onClick="@command('onGuardar')">Guardar/Actualizar</button>					
+				</div>
+			</div>
+		</vbox>
+	</div>
+</div>	
+</window>
+</zk>

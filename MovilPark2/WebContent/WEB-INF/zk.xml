@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+	Created by ZK Studio
+-->
+
+<zk>
+
+	<session-config>
+		<session-timeout>3000</session-timeout>
+	    <device-type>ajax</device-type>   
+	    <timeout-message>Su sesión ha caducado, por favor ingrese de nuevo</timeout-message>
+	    <timeout-uri>/</timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
+    </session-config>
+
+<system-config>
+	<disable-event-thread>false</disable-event-thread>
+</system-config>
+
+
+	<device-config>
+		<device-type>ajax</device-type>
+		<timeout-uri>/</timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->
+	</device-config>
+	
+	<library-property>
+		<name>org.zkoss.theme.preferred</name>
+		<value>atlantic</value>
+	</library-property>
+	
+	<system-config>
+		<disable-event-thread>false</disable-event-thread>
+	</system-config>
+	
+</zk>

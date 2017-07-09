@@ -1,0 +1,19 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="normal" apply="org.zkoss.bind.BindComposer"  width="80%" height="auto"
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.MantenimientoPlacaGestor')" onCancel="@command('salir')" >
+	<div width="100%" height="100%" align="center">
+		<vbox >
+			<div>
+				<label value="Placa: " />
+				<textbox value="@bind(vm.placa)" />	
+			</div>
+			<div align="center" >
+				<button onClick="@command('ingresarPlaca')">Guardar</button>
+				<button onClick="@command('salir')">Salir</button>
+			</div>
+		</vbox>
+	</div>
+	
+</window>
+</zk>

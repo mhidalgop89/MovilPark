@@ -1,0 +1,62 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style>
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.Registro2Gestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+<style  src="/css/bootstrap.css"/>
+<div width="100%" height="100%"  align="center" style="valign: center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="border: double; background: grey;" align="center" width="100%" height="16.6%" >
+				<label value="REGISTRO" style="font-family: 'Times New Roman'; font-size: 35px; color: white" height="100%"/>
+			</div>
+			<div align="center" width="100%"  height="16.6%">
+				<textbox placeholder="Correo Electrónico" focus="true" value="@bind(vm.objUsuario.email)" height="100%" class="form-control" />
+			</div>
+			<div align="center" width="100%" height="16.6%" >
+				<textbox placeholder="Repetir Correo Electrónico" value="@bind(vm.retypeMail)" class="form-control" />
+			</div>
+			<div align="center" width="100%" height="16.6%" >
+					<textbox placeholder="Contraseña" type="password" value="@bind(vm.objUsuario.pass)" class="form-control" />
+			</div>
+			<div  align="center" width="100%" height="16.6%">
+				<textbox placeholder="Repetir Contraseña" type="password" value="@bind(vm.retypePass)" class="form-control" />
+			</div>
+			<div  align="center" width="100%" height="17%"  >
+				<div  class="btn-group" width="100%" height="100%" >
+					<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atrás</button>
+					<button width="49%" style="background: orange; border-radius:0; color: white; border-color: orange" onClick="@command('onSiguiente')">Adelante</button>					
+				</div>
+			</div>
+		</vbox>
+	</div>
+</div>
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+	</div>
+</window>
+</zk>

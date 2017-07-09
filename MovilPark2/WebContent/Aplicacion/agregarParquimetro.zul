@@ -1,0 +1,134 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window  title="" border="none" apply="org.zkoss.bind.BindComposer"  
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.AgreagarParquimetroGestor')"  
+closable="true" width="40%" height="auto" onCancel="@command('salir')" >
+<style  src="/css/bootstrap.css"/>
+<div height="100%" width="100%">
+	<grid>
+		<rows>
+		
+			<row>
+				<label value="*Nombre Parquimetro" ></label>
+				<textbox class="form-control" value="@bind(vm.objParquimetro.nombre)" ></textbox>
+			</row>
+		
+			<row>
+				<label value="*Provincia" ></label>
+				<div align="center" width="100%"  visible="true" >
+					<combobox model="@load(vm.listaProvincias)" width="100%" placeholder="-Provincia-" disabled="false" value="@load(vm.objProvincia.nombre)" selectedItem="@bind(vm.objProvincia)" 
+					readonly="false" id="comProvincia" onSelect="@command('fillCiudades')" onBlur="@command('fillCiudades')" >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+				</div>
+			</row>
+			
+			<row>
+				<label value="*Ciudad" ></label>
+				<div align="center" width="100%" height="16.6%" visible="true" >
+					<combobox model="@load(vm.listaCiudades)"  placeholder="-Ciudad-" width="100%" disabled="false" value="@load(vm.objCiudad.nombre)" selectedItem="@bind(vm.objCiudad)" 
+					readonly="false" id="comCiudad"  onSelect="@command('fillAreas')" onBlur="@command('fillAreas')" >
+					<!--value="@load(vm.objIndicadores.nom_indicador)"  onSelect="@command('obtenerTiposIndicadores',compo=self.selectedItem.value)" -->
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+				</div>
+			</row>
+			
+			<row>
+				<label value="*Area" ></label>
+				<div align="center" width="100%" height="16.6%" visible="true" >
+					<combobox model="@load(vm.listaAreas)"  placeholder="-Areas-" width="100%" disabled="false" value="@load(vm.objArea.nombre)" selectedItem="@bind(vm.objArea)" 
+					readonly="false" id="comArea" onBlur="@command('estableceValores')">
+						<template name="model" var="compo">
+							<comboitem label="@load(compo.nombre)"> </comboitem>
+						</template>
+					</combobox>
+			</div>
+			</row>
+			
+			<row>
+				<label value="*Calle" ></label>
+				<textbox class="form-control" value="@bind(vm.objParquimetro.calle)"  ></textbox>
+			</row>
+			
+			<row>
+				<label value="*Poste" ></label>
+				<textbox class="form-control" value="@bind(vm.objParquimetro.poste)"  ></textbox>
+			</row>
+			
+			<row>
+				<label value="*Num Espacios" ></label>
+				<combobox  readonly="true" open="false" value="@bind(vm.objParquimetro.numeroEspacios)" >
+					<comboitem label="1" value="1"/>
+					<comboitem label="2" value="2"/>
+				</combobox>
+				<!-- <intbox class="form-control" value="@bind(vm.objParquimetro.numeroEspacios)" ></intbox> -->
+				
+			</row>
+			
+			<row>
+				<label value="Latitud" ></label>
+				<doublebox class="form-control" value="@bind(vm.objParquimetro.latitud)" ></doublebox>
+			</row>
+			
+			<row>
+				<label value="Longitud" ></label>
+				<doublebox class="form-control" value="@bind(vm.objParquimetro.longitud)"   ></doublebox>
+			</row>
+			
+						
+			<row>
+				<label value="*Valor por Hora" ></label>
+				<doublebox class="form-control" value="@bind(vm.objParquimetro.valorPorHora)"  onBlur="@command('llenaValorPorHora')"  ></doublebox>
+			</row>
+			
+			
+			<row width="100%" >
+				<label value="*Valor Minimo" ></label>
+				<cell>
+					<hbox>
+						<doublebox class="form-control" value="@bind(vm.objParquimetro.valorMinimo)" 
+						disabled="@bind(vm.deshabilitaValorMinimo)"  onBlur="@command('calculaTiempoMinimoSegunValor')" ></doublebox>
+						<label value="@bind(vm.etiquetaValorPorMinimo)" />
+					</hbox>
+				</cell>
+			</row>
+			
+			<row width="100%">
+				<label value="*Valor Máximo" ></label>
+				<cell>
+					<hbox>
+						<doublebox class="form-control" value="@bind(vm.objParquimetro.valorMaximo)"   
+						disabled="@bind(vm.deshabilitaValorMaximo)" onBlur="@command('calculaTiempoMaximoSegunValor')" ></doublebox>
+						<label value="@bind(vm.etiquetaValorPorMaximo)" />
+					</hbox>
+				</cell>
+			</row>
+
+			
+			<row>
+				<label value="Estado" ></label>
+				<combobox placeholder="-Estado-" id="cmbEstadoPerfil" selectedItem="@bind(vm.estado)" disabled="@load(vm.disabled)" >
+					<comboitem label="Activo" value="A" />
+					<comboitem label="Inactivo" value="I" />
+				</combobox>
+			</row>
+			
+			<row>
+				<cell colspan="2" align="center" >
+					<button label="Guardar" onClick="@command('guardarParquimetro')" ></button> 
+					<button label="Salir" onClick="@command('salir')" ></button>
+					<button label="Ver Mapa" onClick="@command('verMapa')" visible="false" ></button>
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</div>
+
+</window>
+</zk>

@@ -1,0 +1,46 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window id="win" title="" border="normal" apply="org.zkoss.bind.BindComposer"  
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.VerAreaGestor')"  
+closable="true" width="80%" height="auto" onCancel="@command('salir')" style="text-align: center">
+<style  src="/css/bootstrap.css"/>
+
+
+
+<!-- 	<div height="auto" width="auto" align="center" >
+		
+		<html><![CDATA[ 
+		               
+					<!DOCTYPE html>
+					<html>
+						<body>
+						
+							<h2>Spectacular Mountain</h2>
+							<img src="C:\Users\toshiba\Documents\html\agu.jpg" alt="Mountain View" style="width:304px;height:228px;">
+						
+						</body>
+					</html> 
+		               ]]></html>
+	</div> 
+	
+	<iframe id="ifMinuta" width="10%" height="10%"/>
+		
+		<groupbox width="100%" height="700px"> 
+			<caption label="Visor de Documento"/>
+			<image  id="imArea" />	
+		</groupbox>
+	
+	-->
+	
+	
+		<div width="100%" height="100%" align="center" style="text-align: center">
+				<div align="center" style="text-align: center; max-width:100px" >
+					<image style="text-align: center; max-width:100px" id="imArea"/>
+				</div>
+				<div align="center">
+					<button onClick="@command('salir')">Salir</button>
+				</div>
+			
+		</div>
+</window>
+</zk>

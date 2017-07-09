@@ -1,0 +1,106 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="normal" apply="org.zkoss.bind.BindComposer"  
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.ConsultaPagosPorFecha')"  
+closable="true" width="100%" height="100%">
+	<div width="100%" height="100%">
+		<div align="center"  width="100%" height="30%">
+			<vbox>
+				<hbox visible="false">
+					Fecha Inicio <datebox constraint="no empty" width="220px" format="yyyy/MM/dd KK:mm:ss a" value="@bind(vm.fechaInicio)"/>
+					Fecha Fin<datebox constraint="no empty"  width="200px" format="yyyy/MM/dd KK:mm:ss a" value="@bind(vm.fechaFin)"/>
+					
+				</hbox>
+				<div width="100%" align="center">
+					<grid >
+					
+						<columns>
+							<column align="center">Consulta de Pagos Por Fecha</column>
+						</columns>
+						<rows>
+							<row>
+								<label value="Placa: "/>
+								<textbox width="220px" value="@bind(vm.placa)"/>
+							
+								<label value="Area: " />
+								<div align="center" width="100%" height="16.6%" visible="true" >
+										<combobox model="@load(vm.listaAreas)"  placeholder="-Areas-" width="100%" disabled="false" value="@load(vm.objArea.nombre)" 
+										selectedItem="@bind(vm.objArea)"  
+										readonly="false" id="comArea"><!-- onSelect="@command('fillParquimetro')"  -->
+											<template name="model" var="compo">
+												<comboitem label="@load(compo.nombre)"> </comboitem>
+											</template>
+										</combobox>
+								</div>
+							</row>
+							<row>
+								Fecha Inicio <datebox constraint="no empty" width="220px" format="yyyy/MM/dd KK:mm:ss a" value="@bind(vm.fechaInicio)"/>
+							
+								Fecha Fin<datebox constraint="no empty"  width="220px" format="yyyy/MM/dd KK:mm:ss a" value="@bind(vm.fechaFin)"/>
+							</row>
+						</rows>
+					</grid>
+				</div>
+				
+				<div width="100%" align="center"><button label="Consultar" onClick="@command('consultaPorFecha')"/></div>
+			</vbox>
+		</div>	
+		
+			<div align="center" width="100%" >
+				<groupbox id="grbPagos" open="true" closable="false">
+					
+								<listbox  id="lsbPagos" emptyMessage="Datos no disponibles." width="100%" mold="paging" maxlength="9" pageSize="8" 
+									model="@load(vm.listaPagos)" selectedItem="@bind(vm.objPago)" >
+									<listhead>
+									
+										
+										<listheader label="Valor Pagado" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Minutos" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Area" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Ciudad" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Placa" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Fecha Pagos" style="text-align: center" hflex="min" align="center"/>
+										<!-- <listheader label="Ver" style="text-align: center" hflex="min" align="center"/> -->
+										<!-- <listheader label="Mapa" style="text-align: center" hflex="min" align="center"/> -->
+									</listhead>
+									<template name="model" status="s">
+										<listitem>
+
+											<listcell label="@load(each.valorPagado)" />
+											<listcell label="@load(each.minutos)"  />
+											<listcell label="@load(each.areas)" />
+											<listcell label="@load(each.ciudad)" />
+											<listcell label="@load(each.placa)" />
+											<listcell label="@load(each.fechaPago)" />
+											<!-- <listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.eye.png" width="25px" height="25px" style="color:blue;" onClick="@command('muestraDetalle')" /> 
+											</listcell> -->
+											<!--<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.edit.box.png" width="25px" height="25px" style="color:blue;" onClick="@command('editaParquimetro')" /> 
+											</listcell>
+											 <listcell style="background-color:red;" visible="false" >
+												<image src="/images/appbar.delete.png" width="25px" height="25px" style="color:red;" onClick="@command('eliminaContacto')"
+													visible="@load(vm.solicitudConst.notario eq 'S'?false:true)" />
+											</listcell> -->
+										</listitem>
+									</template>
+								</listbox>
+								<div height="10px" />
+							
+							
+				</groupbox>
+				<div height="10px" />
+				<div align="center" width="100%" visible="true">
+					<vbox>
+						<hbox>
+							<label value="Valor Pagado Total: $"/><label value="@load(vm.valorPagadoTotal)"/>
+						</hbox>
+						<hbox>
+							<label value="Cantidad de Minutos Totales: "/><label value="@load(vm.cantidadMinutosTotales)"/>
+						</hbox>
+					</vbox>
+				</div>
+			</div>
+	</div>
+</window>
+</zk>

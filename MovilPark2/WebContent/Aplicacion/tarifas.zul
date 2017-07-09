@@ -1,0 +1,29 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.TarifasGestor')"  
+closable="true" hflex="min" style="overflow:auto" height="auto" onCancel="@command('salir')" >
+	<div align="center"  width="100%" >
+	<grid width="100%"  >
+
+		<rows>
+			<row>
+				<label value="Tarifa Minima: " />
+				<label value="@load(vm.tarifaMinima)" />
+			</row>
+			<row>
+				<label value="Tarifa Máxima: " />
+				<label value="@load(vm.tarifaMaxima)" />
+			</row>
+			<row spans="2" >
+				<div align="center" >
+					<button onClick="@command('salir')" label="Salir"  />
+				</div>			
+			</row>
+			
+		</rows>
+	</grid>
+	</div>
+	
+</window>
+</zk>

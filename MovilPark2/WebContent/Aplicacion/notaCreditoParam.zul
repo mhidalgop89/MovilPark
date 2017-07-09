@@ -1,0 +1,49 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.NotaCreditoParamGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<style  src="/css/bootstrap.css"/>
+<div height="100%" width="100%">
+	<grid>
+		<rows>
+		
+			<row>
+				<label value="*Tiempo maximo de vigencia (expresado en meses)" ></label>
+				<intbox class="form-control" value="@bind(vm.objNcParam.tiempoMaximoVigencia)"/>
+			</row>
+		
+			<row>
+				<label value="*Valor Minimo" ></label>
+				<doublebox class="form-control" value="@bind(vm.objNcParam.valorMinimo)"/>
+			</row>
+			
+			<row>
+				<label value="*Valor Maximo" ></label>
+				<doublebox class="form-control" value="@bind(vm.objNcParam.valormaximo)"/>
+			</row>
+			
+
+			<row visible="false">
+				<label value="Estado" ></label>
+				<combobox placeholder="-Estado-" id="cmbEstadoNcParam" selectedItem="@bind(vm.estado)" disabled="@load(vm.disabled)" >
+					<comboitem label="Activo" value="A" />
+					<comboitem label="Inactivo" value="I" />
+				</combobox>
+			</row>
+			
+			<row>
+				<cell colspan="2" align="center" >
+					<button label="Actualiza Parametros" onClick="@command('actualizaParam')" ></button> 
+				</cell>
+			</row>
+		</rows>
+	</grid>
+</div>
+
+
+
+
+</window>
+</zk>

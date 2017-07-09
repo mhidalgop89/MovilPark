@@ -1,0 +1,93 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.CreditoGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+ 
+<div width="100%" height="100%"  align="center" >
+	<div width="100%" height="100%" style="max-width: 400px" align="center" >
+		<vbox width="100%" height="100%" >
+			<div style="background: darkblue; border-radius: 8px;" align="center" width="100%" height="16.6%" >
+				<label value="Pago de estacionamiento" style="font-family: inherit; font-size: 20px; color: white" height="100%"/>
+			</div>
+			
+			
+			<div style="background: darkblue; border-radius: 8px;" align="center" width="100%" height="16.6%" visible="@load(vm.bloqueaConfPago)">
+				<label value="Atención: No posee saldo suficiente para realizar esta transacción." 
+				style="font-family: inherit; font-size: 20px; color: white" height="100%"/>
+			</div>
+
+			<div align="center" width="100%"  height="16.6%">
+				<hbox>
+					<label  value="Saldo de Crédito: $" style="color: white; font-family: inherit; font-size: 15px; font-weight: bold"  />
+					<label  value="@load(vm.saldo)"  style="color: white; font-family: inherit; font-size: 15px; font-weight: bold"/>					
+				</hbox>
+			</div>
+			<div align="center" width="100%" style="font-weight: bold;" height="16.6%" >
+				<hbox>
+					<label  value="Valor a pagar: $" style="color: white; font-family: inherit; font-size: 15px; font-weight: bold" />
+					<label  value="@load(vm.valorPagar)" style="color: white; font-family: inherit; font-size: 15px"  />					
+				</hbox>
+			</div>
+							
+				<div  align="center" width="100%" height="17%"  >
+					<div  class="btn-group" width="100%" height="100%" >
+						<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atrás</button>
+						<button width="49%" style="background: green; border-radius:0; color: white; border-color: green;" disabled="@load(vm.bloqueaConfPago)" 
+						onClick="@command('confirmaPago2')">Confirma Pago</button>					
+					</div>
+				</div>
+				
+				
+				<div style="border: double;" align="center" width="100%" height="58.6%" >
+				<image  height="50%" src="../images/main-logo-dark1.png" ></image>
+			</div>
+			<div height="5%" />
+			<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-center" style="font-family: inherit; font-size: 13px; font-weight: normal;color: white " >
+									El campo saldo de crédito, muestra el saldo disponible a comsumir en tiempo de parquimetro.
+									Si se posee saldo suficiente, presione Confirmar Pago 
+									
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  			</div>
+				
+		</vbox>
+	</div>
+</div>
+
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+	</div>
+
+</window>
+</zk>

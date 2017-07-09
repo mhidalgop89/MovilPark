@@ -1,0 +1,70 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.NotaCreditoGestor')"  
+closable="true" width="100%" height="100%">
+
+
+<div width="100%" height="100%" align="center"  >
+	
+	<div align="center" width="100%" >
+				<groupbox id="grbUsuarios" open="true" closable="false">
+					<caption style="font-weight:bold;color:black;font-size:16px;" label="Notas de Crédito"> </caption>
+								<label>Ver Notas de Crédito: </label>
+								<combobox placeholder="--seleccionar--" onSelect="@command('consultaFiltroNotaCredito')" selectedItem="@bind(vm.filtroConsulta)">
+									<comboitem label="Todas" value="TODAS" />
+									<comboitem label="Compradas Hoy" value="COMHOY"/>
+									<comboitem label="Usadas Hoy" value="USAHOY"/>
+								</combobox>
+								<div height="15px"/>
+								<listbox  id="lsbNotaCredito" emptyMessage="Datos no disponibles." width="100%" mold="paging" pageSize="5" 
+									model="@load(vm.lsNotasCredito)" selectedItem="@bind(vm.objNotaCredito)" >
+									<listhead>
+										<listheader label="Cliente" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Valor" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Descuentos" style="text-align: center" hflex="min" align="center" /><!-- width="21%" -->
+										<listheader label="Saldos" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Numero Factura" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="F. Limite" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Estado" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Usuario" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Editar" style="text-align: center" hflex="min" align="center"/>
+										
+									</listhead>
+									<template name="model" status="s">
+										<listitem>
+											<listcell label="@load(each.usuario)" />
+											<listcell label="@load(each.valor)" />
+											<listcell label="@load(each.descuento)" />
+											<listcell label="@load(each.saldo)" />
+											<listcell label="@load(each.numeroFactura)" />
+											<listcell label="@load(each.fhasta)" />
+											<listcell label="@load(each.estado)" />
+											<listcell label="@load(each.usuarioIngresa)" />
+											
+											<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.edit.box.png" width="25px" height="25px" style="color:blue;" onClick="@command('editaNotaCredito')" /> 
+											</listcell>
+
+											<!-- <listcell style="background-color:red;" visible="false" >
+												<image src="/images/appbar.delete.png" width="25px" height="25px" style="color:red;" onClick="@command('eliminaContacto')"
+													visible="@load(vm.solicitudConst.notario eq 'S'?false:true)" />
+											</listcell> -->
+										</listitem>
+									</template>
+								</listbox>
+								<div height="10px" />
+							
+							
+				</groupbox>
+				<div height="10px" />
+							<div align="center" width="100%">
+								<button label="Agregar Notas de Crédito" onClick='@command("nuevaNotaCredito")' style="background-color: blue"/>
+							</div>
+			</div>
+	
+</div>
+
+
+</window>
+</zk>

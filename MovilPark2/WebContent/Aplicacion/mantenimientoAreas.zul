@@ -1,0 +1,99 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="normal" apply="org.zkoss.bind.BindComposer"  
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.MantenimientoAreasGestor')"  
+closable="true" width="100%" height="100%">
+
+
+
+<div width="100%" height="100%" align="center"  >
+	
+	<div align="center" width="100%" >
+				
+				
+				
+				
+				<groupbox id="grbUsuarios" open="true" closable="false">
+					<caption style="font-weight:bold;color:black;font-size:16px;" label="Areas"> </caption>
+								<listbox  id="lsbParquimetro" emptyMessage="Datos no disponibles." width="100%" mold="paging" pageSize="5" 
+									model="@load(vm.listaAreas)" selectedItem="@bind(vm.objAreas)" >
+									
+									<auxhead>
+										
+										<auxheader hflex="min" align="center">
+											<image src="../images/16x16/filtro.png"/>
+											<combobox model="@load(vm.listaProvincia)" width="100%" placeholder="-Provincia-" disabled="false" selectedItem="@bind(vm.objFiltros.objProvincia)" 
+												readonly="false" id="comProvincia" onBlur="@command('filtraProvincia')"><!-- onBlur="@command('filtraProvincia')" -->
+												<template name="model" var="compo">
+													<comboitem label="@load(compo.nombre)"> </comboitem>
+												</template>
+											</combobox>
+										</auxheader>
+										<auxheader hflex="min" align="center">
+											<image src="../images/16x16/filtro.png"/>
+											<combobox model="@load(vm.listaCiudad)"  placeholder="-Filtro Ciudad-" width="100%" disabled="false"  selectedItem="@bind(vm.objFiltros.objCiudad)" 
+												readonly="false" id="comCiudad"  onBlur="@command('filtraCiudad')" ><!-- onBlur="@command('filtraCiudad')" -->
+												<template name="model" var="compo">
+													<comboitem label="@load(compo.nombre)" value="@bind(vm.objCiudad)"> </comboitem>
+												</template>
+											</combobox>
+										</auxheader>
+																				
+										<auxheader label="Detalle" style="text-align: center" hflex="min" align="center" colspan="4"/>
+										
+									</auxhead>
+									<listhead>
+										<listheader label="Provincia" style="text-align: center" hflex="min" align="center" /><!-- width="21%" -->
+										<listheader label="Ciudad" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Area" style="text-align: center" hflex="min" align="center"/>
+										
+										<listheader label="Editar" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Registrar Img." style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Ver Img." style="text-align: center" hflex="min" align="center"/>
+										<!-- <listheader label="Mapa" style="text-align: center" hflex="min" align="center"/> -->
+									</listhead>
+									<template name="model" status="s">
+										<listitem>
+										<listcell label="@load(each.nombreProvincia)" />
+											<listcell label="@load(each.nombreCiudad)" />
+											<listcell label="@load(each.nombre)" />											
+											
+											<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.edit.box.png" width="25px" height="25px" style="color:blue;" onClick="@command('editaArea')" /> 
+											</listcell>
+											
+											<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.page.upload.png" width="25px" height="25px" style="color:blue;" onClick="@command('saveToDisk')" /> 
+											</listcell>
+											<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.image.multiple.png" width="25px" height="25px" style="color:blue;" onClick="@command('verArea')" /> 
+											</listcell>
+											
+											<!--<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.edit.box.png" width="25px" height="25px" style="color:blue;" onClick="@command('editaParquimetro')" /> 
+											</listcell>
+											 <listcell style="background-color:red;" visible="false" >
+												<image src="/images/appbar.delete.png" width="25px" height="25px" style="color:red;" onClick="@command('eliminaContacto')"
+													visible="@load(vm.solicitudConst.notario eq 'S'?false:true)" />
+											</listcell> -->
+										</listitem>
+									</template>
+								</listbox>
+								<div height="10px" />
+							
+							
+				</groupbox>
+				<div height="10px" />
+							<div align="center" width="100%">
+								<button label="Agregar Area" onClick='@command("nuevaArea")' style="background-color: blue"/>
+							</div>
+			</div>
+	
+</div>
+
+
+
+
+
+</window>
+</zk>

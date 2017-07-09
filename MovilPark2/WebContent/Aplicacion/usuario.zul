@@ -1,0 +1,58 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window  title="" border="none" apply="org.zkoss.bind.BindComposer"  
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.UsuarioGestor')"  
+closable="true" width="100%" height="100%">
+
+<div width="100%" height="100%" align="center"  >
+	
+	<div align="center" width="100%" >
+				<groupbox id="grbUsuarios" open="true" closable="false">
+					<caption style="font-weight:bold;color:black;font-size:16px;" label="Usuarios"> </caption>
+								<listbox  id="lstPerfiles" emptyMessage="Datos no disponibles." width="100%" mold="paging" pageSize="5" 
+									model="@load(vm.lsUsuarios)" selectedItem="@bind(vm.objUsuario)" >
+									<listhead>
+										<listheader label="Usuario" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Identificación" style="text-align: center" hflex="min" align="center" visible="false" />
+										<listheader label="Nombre" style="text-align: center" hflex="min" align="center" /><!-- width="21%" -->
+										<listheader label="Apellido" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Provincia" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Ciudad" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Estado" style="text-align: center" hflex="min" align="center"/>
+										<listheader label="Editar" style="text-align: center" hflex="min" align="center"/>
+									</listhead>
+									<template name="model" status="s">
+										<listitem>
+											<listcell label="@load(each.usuario)" />
+											<listcell label="@load(each.identificacion)" />
+											<listcell label="@load(each.nombre)" />
+											<listcell label="@load(each.apellido)" />
+											<listcell label="@load(each.provincia)" />
+											<listcell label="@load(each.ciudad)" />
+											<listcell label="@load(each.estado)" />
+											
+											<listcell style="background-color:blue;">
+												<image src="/images/dark/appbar.edit.box.png" width="25px" height="25px" style="color:blue;" onClick="@command('editaUsuario')" /> 
+											</listcell>
+											<!-- <listcell style="background-color:red;" visible="false" >
+												<image src="/images/appbar.delete.png" width="25px" height="25px" style="color:red;" onClick="@command('eliminaContacto')"
+													visible="@load(vm.solicitudConst.notario eq 'S'?false:true)" />
+											</listcell> -->
+										</listitem>
+									</template>
+								</listbox>
+								<div height="10px" />
+							
+							
+				</groupbox>
+				<div height="10px" />
+							<div align="center" width="100%">
+								<button label="Agregar Usuario" onClick='@command("nuevoUsuario")' style="background-color: blue"/>
+							</div>
+			</div>
+	
+</div>
+
+
+</window>
+</zk>

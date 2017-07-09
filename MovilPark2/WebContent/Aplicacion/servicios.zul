@@ -1,0 +1,120 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<?link rel="shortcut icon" href="../images/parqueoPositivo3.ico" type="image/x-icon"?>
+<zk>
+
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+
+
+
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.ServiciosGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+
+
+<div width="100%" height="100%" align="center">
+<div width="100%" height="100%" style="max-width: 400px" align="center" >	
+	<vbox width="100%" height="100%" align="center">
+		<div style="background: darkblue;  border-radius: 8px;" align="center" width="100%" height="100%"  visible="false">
+			<hbox width="70%" align="center">
+			<label value="Pago Tarifa Extraordinaria" style="color: white; font-family: inherit; font-size: 25px;"   height="100%"/>
+				<image src="/images/dark/appbar.iphone.png" ></image>
+			</hbox>
+		</div>
+		
+			<div align="center" height="100%"  width="100%" style="background: darkgreen;  border-radius: 8px;" onClick="@command('onParquimetro')" >
+				
+				<!-- <label value="Pago Parquimetro" style="color: white; font-family: inherit; font-size: 25px"   onClick="@command('onParquimetro')"/> -->
+				<button label="Pago Parquimetro" style="color: white; font-family: inherit; font-size: 20px;background: darkgreen; border-color: darkgreen;"  
+						 onClick="@command('onParquimetro')" width="75%" height="100%"/>
+				<image src="/images/dark/appbar.gauge.75.png" style="background: darkgreen;"  onClick="@command('onParquimetro')"></image>
+			</div>
+			<div align="center" height="50%"  width="100%" style="background: darkgreen;  border-radius: 8px;" onClick="@command('onCambioPass')" >
+				
+				<button label="Actualizar Contraseña" style="color: white; font-family: inherit; font-size: 20px; ;background: darkgreen; border-color: darkgreen;" 
+						onClick="@command('onCambioPass')" width="75%" height="100%"/>
+				<image src="/images/dark/appbar.interface.password.png" style="background: darkgreen;" onClick="@command('onCambioPass')" ></image>
+			</div>
+			
+			<div align="center" height="50%"  width="100%" style="background: transparent;  border-radius: 8px;">
+				
+				<groupbox>
+					<caption>Saldo Actual</caption>
+					<label value="Disponible: $" style="color: white; font-weight: bold"/>
+					<label value="@bind(vm.saldo)" style="color: white; font-weight: bold"/>
+				</groupbox>
+			</div>
+			
+			<div width="100%" align="center" style="background: orange; border-radius: 8px;" onClick="@command('salir')" visible="true" >
+				
+					<button label="Salir" style="color: white; font-family: inherit; font-size: 20px;background: orange; border-color: orange"  
+							onClick="@command('salir')" width="75%" height="100%"/>
+					<image src="/images/dark/appbar.network.disconnect.png" onClick="@command('salir')" style="background: orange"></image>
+				
+			</div>
+			
+			<div  width="100%" height="100%" align="center">
+				<image   src="/images/main-logo-dark1.png" style="max-width: 80%" ></image>
+			</div>
+			
+			<div height="5%" />
+			<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-center" style="font-family: inherit; font-size: 15px; font-weight: normal;color: white " >
+								Para acceder al proceso de pago del parquimetro por favor selecciona la opción Pago de Parquimetro,
+								si deseas salir presiona Salir
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  			</div>
+		
+		<!-- <hbox height="100%" width="100%" align="center" >
+			<div align="center" width="100%" style="background: orange;"  >
+				<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"  ></image>
+				<label value="Parking púlico" style="color: white" />
+			</div>
+			<div width="100%" align="center" style="background: orange;"  >
+				<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"></image>
+				<label value="Parking púlico" style="color: white" />
+			</div>
+		</hbox>
+		<hbox height="100%" width="100%" align="center" >
+			<div align="center" width="100%" style="background: orange;" >
+				<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"  ></image>
+				<label value="Parking púlico" style="color: white" />
+			</div>
+			<div width="100%" align="center" style="background: orange;" >
+				<image src="/images/dark/appbar.calendar.dollar.png" style="background: orange;"></image>
+				<label value="Parking púlico" style="color: white" />
+			</div>
+		</hbox> -->
+	</vbox>
+</div>	
+</div>
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+		
+		
+	</div>
+</window>
+</zk>

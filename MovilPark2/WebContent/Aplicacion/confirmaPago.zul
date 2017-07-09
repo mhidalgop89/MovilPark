@@ -1,0 +1,222 @@
+<?page title="" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="" border="none" apply="org.zkoss.bind.BindComposer" 
+viewModel="@id('vm') @init('ec.gob.movilpark.gestor.ConfirmaPagoGestor')"  
+closable="true" width="100%" style="overflow:auto" height="auto">
+
+<style>
+		.bgStyleSimCred{
+			background-image: url("../images/bg-intermatico-simcred.png");
+			background-color:transparent; 
+			background-repeat: repeat-x;
+			border-width: 0px;
+			border-color: #000000;
+			border-bottom-style: solid;
+			position: absolute;
+			top:0px;
+			left: 0px;
+			width:100%;
+			
+		}
+	</style>
+<!-- 	<script type="text/javascript" src="../js/bootstrap.js" ></script>
+	
+	<style src="../css/bootstrap-theme.css"></style>
+	<style src="../css/bootstrap.css"></style> -->
+
+
+
+<div sclass="bgStyleSimCred" height="100%" width="100%" align="center"  >		
+		<div width="100%" height="75%" align="center" >
+  					<!-- ***************************************************************Plantilla*************************************************************** -->
+
+
+					<script type="text/javascript">
+						function setAttPaypal(quantity,amount) { 
+							$("#inputQuantity").attr("value", 5);
+							$("#inputAmount").attr("value", 3);
+						 }
+					 </script>
+					
+					<style  src="/css/bootstrap.css"/>
+					<div width="100%" height="100%"  align="center" >
+						<div width="100%" height="100%" style="max-width: 400px" align="center" >
+							<vbox width="100%" height="100%" >
+								<div style="background: darkblue; border-radius: 8px;" align="center" width="100%" height="16.6%" >
+									<label value="Pago de estacionamiento" style="font-family: inherit; font-size: 20px; color: white" height="100%"/>
+								</div>
+								
+								<grid style="background-color: transparent;" >
+									<rows  style="background-color: transparent;" >
+										<row style="background-color: transparent;">
+											<label  value="Placa: "  style="font-weight:bold; font-family: inherit; font-size: 13px; color: white"  />
+											<label  value="@load(vm.placa)"  style="font-family: inherit; font-size: 13px; color: white" />				
+										</row>
+										<row style="background-color: transparent;" visible="@load(vm.nombreParquimetroVisible)" >
+											<label  value="Nombre Parquimetro: "  style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.nombreParquimetro)"   style=" font-family: inherit; font-size: 13px; color: white" />				
+										</row>
+										<row style="background-color: transparent;" visible="@load(vm.espacioParquimetroVisible)" >
+											<label  value="Espacio Parq.: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.espacioParq)"   style="font-family: inherit; font-size: 13px; color: white" />		
+										</row>
+										<row style="background-color: transparent;">
+											<label  value="Fecha de Tramite: "  style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.fecha)"  style="font-family: inherit; font-size: 13px; color: white"  />
+										</row>
+										<row style="background-color: transparent;" visible="false">
+											<label  value="Hora Inicio: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.horaInicio)"  style="font-family: inherit; font-size: 13px; color: white"  />	
+										</row>
+										<row style="background-color: transparent;" visible="false">
+											<label  value="Hora Fin: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.horaFin)"   style="font-family: inherit; font-size: 13px; color: white" />
+										</row>
+										<row style="background-color: transparent;">
+											<label  value="Costo por Transacción: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="0.15"   style="font-family: inherit; font-size: 13px; color: white" />
+										</row>
+										<row style="background-color: transparent;">
+											<label  value="Valor Subtotal: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.objSession.objPago.valorSubTotal)"   style="font-family: inherit; font-size: 13px; color: white" />
+										</row>
+										<row style="background-color: transparent;">
+											<label  value="Valor Total: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white"/>
+											<label  value="@load(vm.objSession.objPago.valorTotal)"  style="font-family: inherit; font-size: 13px; color: white"  />
+										</row>
+									</rows>
+								</grid>
+								
+								<!-- <div align="center" width="100%"  height="16.6%">
+									<hbox>
+										<label  value="Placa: "  style="font-weight:bold; font-family: inherit; font-size: 13px; color: white"  />
+										<label  value="@load(vm.placa)"  style="font-family: inherit; font-size: 13px; color: white" />					
+									</hbox>
+								</div>
+								<div align="center" width="100%" style="font-weight: bold;" height="16.6%" >
+									<hbox>
+										<label  value="Nombre Parquimetro: "  style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+										<label  value="@load(vm.nombreParquimetro)"   style=" font-family: inherit; font-size: 13px; color: white" />					
+									</hbox>
+								</div>
+								<div align="center" width="100%" height="16.6%" >
+									<hbox>
+										<label  value="Espacio Parq.: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+										<label  value="@load(vm.numeroParquimetro)"   style="font-family: inherit; font-size: 13px; color: white" />					
+									</hbox>
+								</div>
+								<div align="center" width="100%" height="16.6%" >
+										<hbox>
+											<label  value="Fecha de Tramite: "  style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.fecha)"  style="font-family: inherit; font-size: 13px; color: white"  />					
+										</hbox>
+								</div>
+								<div align="center" width="100%" height="16.6%" >
+										<hbox>
+											<label  value="Hora Inicio: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.horaInicio)"  style="font-family: inherit; font-size: 13px; color: white"  />					
+										</hbox>
+								</div>
+								<div align="center" width="100%" height="16.6%" >
+										<hbox>
+											<label  value="Hora Fin: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white" />
+											<label  value="@load(vm.horaFin)"   style="font-family: inherit; font-size: 13px; color: white" />					
+										</hbox>
+								</div>
+								<div align="center" width="100%" height="16.6%" >
+										<hbox>
+											<label  value="Valor Total: "   style="font-weight:bold; font-family: inherit; font-size: 13px; color: white"/>
+											<label  value="@load(vm.valorTotal)"  style="font-family: inherit; font-size: 13px; color: white"  />					
+										</hbox>
+								</div> -->
+								
+								<div visible="false" >
+								<html><![CDATA[ 
+								               
+								               
+					
+					
+					<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+					<input type="hidden" name="cmd" value="_s-xclick">
+					<input type="hidden" name="hosted_button_id" value="BVBP75QZQRZ4G">
+					<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+					<img alt="" border="0" src="https://www.paypalobjects.com/es_XC/i/scr/pixel.gif" width="1" height="1">
+					</form>
+					
+					
+								               
+								               ]]></html>
+								</div>
+								<div visible="false">
+								
+									<html><![CDATA[ 
+							
+										
+					
+										<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+										  <input type="hidden" name="cmd" value="_s-xclick">
+										  <input type="hidden" name="hosted_button_id" value="6RNT8A4HBBJRE">
+										  <input type="hidden" id="inputQuantity" name="quantity" value="15">
+										  <input type="hidden" id="inputAmount2" name="amount" value="5">
+										  <input type="hidden" name="notify_url" value="http://localhost:8080/MovilPark/login">
+										  <input type="image"
+										    src="https://www.sandbox.paypal.com/en_US/i/btn/btn_buynowCC_LG.gif"
+										    name="submit" alt="PayPal - The safer, easier way to pay online!">
+										  <img alt="" src="https://www.sandbox.paypal.com/en_US/i/scr/pixel.gif"
+										    width="1" height="1">
+										</form>
+									               
+									               ]]></html>
+								
+								</div>
+								<separator orient="horizontal" spacing="15px"></separator>
+								<div align="center">
+									<hbox>
+										<div width="100%"  align="center" style="background-color: green" visible="false">
+											<vbox align="center">
+												<include src="paypal.zul" style="background-color: green"/>
+												<label value="PAYPAL" style="color: white"/>
+											</vbox>
+										</div>
+										<div width="25px"/>
+										<div  align="center" style="background-color: green">
+											<vbox align="center">
+												<image src="/images/dark/appbar.creditcard.png" style="background-color: green"  onClick="@command('credito')"/>
+												<label value="Nota de Crédito" style="color: white"/>
+											</vbox>
+										</div>
+									</hbox>
+								</div>
+								
+								<div  align="center" width="100%" height="17%"  >
+									<div  class="btn-group" width="100%" height="100%" >
+										<button width="49%"  style="background: grey; border-radius:0 ; color: white; " onClick="@command('onAtras')" >Atrás</button>
+										<!-- <button width="49%" style="background: green; border-radius:0; color: white; border-color: green" onClick="@command('onConfirmarPago')">Confirmar Pago</button> 					
+										<include src="paypal.zul" width="49%" ></include>-->
+									</div>
+								</div>
+								<div style="border: double;" align="center" width="100%" height="58.6%" >
+				<image  height="50%" src="../images/main-logo-dark1.png" ></image>
+			</div>
+			<div height="5%" />
+			<div align="center" width="100%">
+ 							<div align="center" width="95%" >
+  							<html><![CDATA[            
+								<p class="text-center" style="font-family: inherit; font-size: 15px; font-weight: normal;color: white " >
+								Para acceder al proceso de pago del parquimetro por favor selecciona la opción Pago de Parquimetro,
+								si deseas salir presiona Salir
+								</p>           
+  							 ]]></html>
+ 							 </div>
+  			</div>
+							</vbox>
+						</div>
+					</div>
+
+<!-- ***************************************************************Plantilla*************************************************************** -->
+  				<separator orient="horizontal" spacing="30px" ></separator>
+		</div>
+	</div>
+
+</window>
+</zk>
