@@ -159,14 +159,18 @@ public void fillAreas(){
 					lsEspacioPorParquimetro.get(i).setExisteMulta(true);
 				
 				minutos = diferenciaEnDias2(lsEspacioPorParquimetro.get(i).getFechaFinal(),new Date());
-				horas = horas + minutos;
+				
 				//segundos = diferenciaEnDiasSeg(lsEspacioPorParquimetro.get(i).getFechaFinal(),new Date());
 				//segundos = segundos - (minutos*60);
 				
-				if(minutos<0)
+				if(minutos<0){
 					lsEspacioPorParquimetro.get(i).setMinutos(0);
+					minutos =0;
+				}
 				else
 					lsEspacioPorParquimetro.get(i).setMinutos(minutos);
+				
+				horas = horas + minutos;
 				
 				if(segundos<0)
 					lsEspacioPorParquimetro.get(i).setSegundos(0);

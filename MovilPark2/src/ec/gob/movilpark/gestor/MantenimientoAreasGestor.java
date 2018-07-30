@@ -81,10 +81,7 @@ public class MantenimientoAreasGestor {
 	@Command
 	public void verArea(){
 		try{
-			
-			
-			
-			
+
 			if(objAreas==null)
 				return;
 			if(objAreas.getRutaImagen()==null){

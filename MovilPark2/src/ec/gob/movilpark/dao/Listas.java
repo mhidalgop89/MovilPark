@@ -14,6 +14,7 @@ import java.util.Map;
 import ec.gob.movilpark.dto.Areas;
 import ec.gob.movilpark.dto.Ciudad;
 import ec.gob.movilpark.dto.EspacioPorParquimetro;
+import ec.gob.movilpark.dto.Firebase;
 import ec.gob.movilpark.dto.MultaVehiculo;
 import ec.gob.movilpark.dto.NotaCredito;
 import ec.gob.movilpark.dto.NotaCreditoParam;
@@ -22,6 +23,7 @@ import ec.gob.movilpark.dto.Parametros;
 import ec.gob.movilpark.dto.Parquimetro;
 import ec.gob.movilpark.dto.Perfil;
 import ec.gob.movilpark.dto.Provincia;
+import ec.gob.movilpark.dto.PushMessage;
 import ec.gob.movilpark.dto.Tramite;
 import ec.gob.movilpark.dto.Usuario;
 import ec.gob.movilpark.dto.Vehiculo;
@@ -776,6 +778,213 @@ public class Listas extends ConexionUtil {
 		
 	}
 	
+	
+	public Map<String, Object> consultaFirebase  (int codCia, String codProdFirebase)
+	{
+		
+		Map<String, Object> mapResult = new HashMap<String, Object>();
+		CallableStatement oraCallStmt   = null;
+		Connection conn=null;
+		List<Firebase>listaFirebase= new ArrayList<Firebase>();
+		Firebase objFirebase ;
+		ResultSet rs;
+		String error;
+
+		
+		try
+		{ 
+			
+			System.out.println("######################llamando procesure");
+
+			conn=getConnection();
+			System.out.println(conn);
+			oraCallStmt = (CallableStatement) conn.prepareCall(
+	                "{call sp_consulta_firebase(?,?,?)}"
+	            );
+			oraCallStmt.setInt(1, codCia);
+			oraCallStmt.setString(2, codProdFirebase);
+			oraCallStmt.registerOutParameter(3, java.sql.Types.VARCHAR);
+			
+			
+			rs=oraCallStmt.executeQuery();
+			error = oraCallStmt.getString(3);
+			if(error!=null){
+				mapResult.put("error", 998);
+				mapResult.put("mensajeError", error);
+			}
+//			System.out.println("oraCallStmt.getInt(1): "+oraCallStmt.getInt(1));
+			while(rs.next()){
+				objFirebase  = new Firebase();
+				objFirebase.setCodigoCompania(rs.getInt("codigo_compania"));
+				objFirebase.setCfirebase(rs.getInt("cfirebase"));
+				objFirebase.setCproductoFirebase(rs.getString("cproducto_firebase"));
+				objFirebase.setProductoFirebase(rs.getString("producto_firebase"));
+				objFirebase.setRutaClavePrivada(rs.getString("ruta_clave_privada"));
+				objFirebase.setObservacion(rs.getString("observacion"));
+				objFirebase.setFdesde(rs.getDate("fdesde"));
+				objFirebase.setFhasta(rs.getDate("fhasta"));
+				
+				listaFirebase.add(objFirebase);
+				
+			}
+
+			
+//			mapResult.put("numCodigoErr", oraCallStmt.getInt(1));
+			mapResult.put("firebase", listaFirebase);
+			
+			//id_tramiteCosntitucion= oraCallStmt.getString(6);
+			
+		}catch(Exception e)
+		{   mapResult.put("error", 999);
+			mapResult.put("mensajeError", e.getMessage());
+			e.printStackTrace();
+		}finally
+		{
+			
+			try {
+				oraCallStmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+			}
+			try {
+				if (conn!=null)
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+			}
+		}
+		return mapResult; 
+		
+	}
+	
+	
+	public Map<String, Object> ingresaFirebase(Firebase firebase)
+	{
+		
+		Map<String, Object> mapResult = new HashMap<String, Object>();
+		CallableStatement oraCallStmt   = null;
+		Connection conn=null;
+		String error;
+		try
+		{ 
+			
+			System.out.println("######################llamando procesure");
+
+			conn=getConnection();
+			System.out.println(conn);
+			oraCallStmt = (CallableStatement) conn.prepareCall(
+	                "{call sp_inserta_datos_firebasae(?,?,?,?,?,?,?)}"
+	            );
+			
+			oraCallStmt.setInt(1, firebase.getCodigoCompania());
+			oraCallStmt.setInt(2, firebase.getCfirebase());
+			oraCallStmt.setString(3, firebase.getCproductoFirebase());
+			
+			oraCallStmt.setString(4, firebase.getProductoFirebase());
+			oraCallStmt.setString(5, firebase.getRutaClavePrivada());
+			oraCallStmt.setString(6, firebase.getObservacion());
+			
+			oraCallStmt.registerOutParameter(7, java.sql.Types.VARCHAR);
+			
+			oraCallStmt.execute();
+			error = oraCallStmt.getString(7);
+			if(error!=null){
+				mapResult.put("error", 998);
+				mapResult.put("mensajeError", error);
+			}
+				
+		}catch(Exception e)
+		{   mapResult.put("error", 999);
+			mapResult.put("mensajeError", e.getMessage());
+			e.printStackTrace();
+		}finally
+		{
+			
+			try {
+				oraCallStmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+			}
+			try {
+				if (conn!=null)
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+			}
+		}
+		return mapResult; 
+		
+	}
+	
+	public Map<String, Object> ingresaPushMessage(PushMessage push)
+	{
+		
+		Map<String, Object> mapResult = new HashMap<String, Object>();
+		CallableStatement oraCallStmt   = null;
+		Connection conn=null;
+		String error;
+		try
+		{ 
+			
+			System.out.println("######################llamando procesure");
+
+			conn=getConnection();
+			System.out.println(conn);
+			oraCallStmt = (CallableStatement) conn.prepareCall(
+	                "{call sp_inserta_datos_push(?,?,?,?,?,?,?,?,?,?,?,?)}"
+	            );
+			
+			oraCallStmt.setInt(1, push.getCodigoCompania());
+			oraCallStmt.setString(2, push.getRequest());
+			oraCallStmt.setString(3, push.getResponse());
+						
+			oraCallStmt.setString(4, push.getMensaje());
+			oraCallStmt.setString(5, push.getCuerpo());
+			oraCallStmt.setString(6, push.getMetodo());
+			oraCallStmt.setString(7, push.getToken());
+			oraCallStmt.setString(8, push.getEstado());
+			oraCallStmt.setString(9, push.getRutaClavePrivada());
+			oraCallStmt.setString(10, push.getUsuarioIngresa());
+			oraCallStmt.setString(11, push.getUsuarioActualiza());
+			
+			oraCallStmt.registerOutParameter(12, java.sql.Types.VARCHAR);
+			
+			
+			oraCallStmt.execute();
+			error = oraCallStmt.getString(12);
+			if(error!=null){
+				mapResult.put("error", 998);
+				mapResult.put("mensajeError", error);
+			}
+				
+		}catch(Exception e)
+		{   mapResult.put("error", 999);
+			mapResult.put("mensajeError", e.getMessage());
+			e.printStackTrace();
+		}finally
+		{
+			
+			try {
+				oraCallStmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+			}
+			try {
+				if (conn!=null)
+				conn.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				
+			}
+		}
+		return mapResult; 
+		
+	}
 	
 	
 	public Map<String, Object> realizaTransaccionPago(int idUsuario, Double valorPagar,String usuarioActualiza,Tramite objTramite, Pago pago)
